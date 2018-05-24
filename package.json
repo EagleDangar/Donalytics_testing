@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "postinstall": "ng build --aot -prod",
+    "postinstall": "ng build --aot -prod=false",
     "ng": "ng",
     "start": "node index.js",
     "build": "ng build --prod",
