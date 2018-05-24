@@ -3,12 +3,17 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "ng build --aot -prod",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node index.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engines": {
+    "node": "6.14.2",
+    "npm": "3.10.10"
   },
   "private": true,
   "dependencies": {
@@ -41,13 +46,14 @@
     "leaflet.heat": "https://github.com/Leaflet/Leaflet.heat/tarball/gh-pages",
     "leaflet.markercluster": "1",
     "mapbox-gl": "^0.44.1",
+    "path": "^0.12.7",
     "rxjs": "^5.5.6",
     "stripe": "^6.0.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.8",
-    "@angular/compiler-cli": "^5.2.0",
+    "@angular/cli": "^6.0.3",
+    "@angular/compiler-cli": "^5.2.11",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",

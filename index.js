@@ -1,5 +1,11 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+
+const app = express();
+
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist'))
 const stripe = require("stripe")(
     "sk_test_xtz7vzUNDhyFM1leNDKmLLAW"
     );
@@ -56,6 +62,6 @@ const stripe = require("stripe")(
         paginateCharges(last_id);
 
     });
-    app.listen(process.env.PORT || 5000, () =>
-    console.log('server on port 5000')
+    app.listen(process.env.PORT || 8080, () =>
+    console.log('server on port 8080')
     )
