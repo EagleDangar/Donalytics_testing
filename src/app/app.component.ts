@@ -404,13 +404,15 @@ constructor(private api: ApiService  ) {
 //             console.log(starting_after1);
 //     })     
 
+let p = 0 ;
+let q = 0 ;
 
 
-// this.api.getallcharges().subscribe((res) => {
-//     console.log(res);
-//     this.stripe_metadata = res.md;
-//     this.stripe_timedata = res.td;
-//     this.stripe_amount = res.amount;
+this.api.getallcharges().subscribe((res) => {
+    console.log(res);
+    this.stripe_metadata = res.md;
+    this.stripe_timedata = res.td;
+    this.stripe_amount = res.amount;
 //     for (p = 0; p < this.stripe_metadata.length; p++ ) {
 //             if(this.stripe_metadata[p]!==undefined){
 //             this.latitude.push(this.stripe_metadata[p]['latitude']);
@@ -421,61 +423,59 @@ constructor(private api: ApiService  ) {
 //             this.longitude.push(0);
 //         }
 // }   
-//     // this.time_data1 = this.stripe_timedata.map(function(e, i) {
-//     //     return [e, this.stripe_amount[i]];
-//     //   }); 
-//     //   console.log(this.time_data1)
-//     const stripe_df = new DataFrame({'amount':this.stripe_amount , 'latitude': this.latitude
-//     , 'longitude' : this.longitude, 'timestamp' : this.stripe_timedata },
-//     ['amount', 'latitude', 'longitude', 'timestamp'
-//     ]);
-//     // stripe_df.show(42);
-//     const time_df = stripe_df.select('timestamp','amount')
-//     time_df.sortBy('timestamp')
-//     this.time_data1=time_df.toArray();
-//     console.log(this.time_data1);
+    this.time_data1 = this.stripe_timedata.map(function(e, i) {
+        return [e, this.stripe_amount[i]];
+      }); 
+      console.log(this.time_data1)
+    const stripe_df = new DataFrame({'amount':this.stripe_amount , 'latitude': this.latitude
+    , 'longitude' : this.longitude, 'timestamp' : this.stripe_timedata },
+    ['amount', 'latitude', 'longitude', 'timestamp'
+    ]);
+    // stripe_df.show(42);
+    const time_df = stripe_df.select('timestamp','amount')
+    time_df.sortBy('timestamp')
+    this.time_data1=time_df.toArray();
+    console.log(this.time_data1);
     
-//     this.time_series = {
-//         rangeSelector : {
-//             selected : 1
-//         },
-//         title : { text : 'Donation Time Series' },
-//     series: [{
-//             name: 'Donation Data',
-//             type: 'area',
-//             data: this.time_data1,
-//             tooltip: {
-//             valueDecimals: 2
-//         }
-//     }],
-//     responsive: {
-//         rules: [{
-//             condition: {
-//                 maxWidth: 600
-//             },
-//             chartOptions: {
-//                 chart: {
-//                     width: 1300,
-//                     height: 500
-//                 },
-//                 subtitle: {
-//                     text: null
-//                 },
-//                 navigator: {
-//                     enabled: false
-//                 }
-//             }
-//         }]
-//     },
-//     exporting: {
-//         enabled : true,
-//         filename: 'Donation Time Series'
-//     },
-//     };
-// });
+    this.time_series = {
+        rangeSelector : {
+            selected : 1
+        },
+        title : { text : 'Donation Time Series' },
+    series: [{
+            name: 'Donation Data',
+            type: 'area',
+            data: this.time_data1,
+            tooltip: {
+            valueDecimals: 2
+        }
+    }],
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 600
+            },
+            chartOptions: {
+                chart: {
+                    width: 1300,
+                    height: 500
+                },
+                subtitle: {
+                    text: null
+                },
+                navigator: {
+                    enabled: false
+                }
+            }
+        }]
+    },
+    exporting: {
+        enabled : true,
+        filename: 'Donation Time Series'
+    },
+    };
+});
 
-let p = 0 ;
-let q = 0 ;
 
  for (p = 0; p < Object.keys(campaign_da1).length; p++ ) {
                 this.campaigns.push(campaign_da1[p]['Campaigns']);
@@ -710,45 +710,45 @@ spacingRight: 0,
 // Campaign chart ends here
 
 
- // Creating Time Series chart
-                this.time_series = {
-                    rangeSelector : {
-                        selected : 1
-                    },
-                    title : { text : 'Donation Time Series' },
-                series: [{
-                        name: 'Donation Data',
-                        type: 'area',
-                        data: time_data,
-                        tooltip: {
-                        valueDecimals: 2
-                    }
-                }],
-                responsive: {
-                    rules: [{
-                        condition: {
-                            maxWidth: 600
-                        },
-                        chartOptions: {
-                            chart: {
-                                width: 1300,
-                                height: 500
-                            },
-                            subtitle: {
-                                text: null
-                            },
-                            navigator: {
-                                enabled: false
-                            }
-                        }
-                    }]
-                },
-                exporting: {
-                    enabled : true,
-                    filename: 'Donation Time Series'
-                },
-                };
-// Time Series's end is here
+//  // Creating Time Series chart
+//                 this.time_series = {
+//                     rangeSelector : {
+//                         selected : 1
+//                     },
+//                     title : { text : 'Donation Time Series' },
+//                 series: [{
+//                         name: 'Donation Data',
+//                         type: 'area',
+//                         data: time_data,
+//                         tooltip: {
+//                         valueDecimals: 2
+//                     }
+//                 }],
+//                 responsive: {
+//                     rules: [{
+//                         condition: {
+//                             maxWidth: 600
+//                         },
+//                         chartOptions: {
+//                             chart: {
+//                                 width: 1300,
+//                                 height: 500
+//                             },
+//                             subtitle: {
+//                                 text: null
+//                             },
+//                             navigator: {
+//                                 enabled: false
+//                             }
+//                         }
+//                     }]
+//                 },
+//                 exporting: {
+//                     enabled : true,
+//                     filename: 'Donation Time Series'
+//                 },
+//                 };
+// // Time Series's end is here
 
 
 // Creating leaflet Heat map
