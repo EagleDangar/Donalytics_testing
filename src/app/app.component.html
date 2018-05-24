@@ -1,0 +1,62 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="js/leaflet-providers.js"></script>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Donation_per_Campaign_Types</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<style type="text/css">
+ #container {
+	width: 100%;
+	height: 100%;
+}
+#container1 {
+	width: 100%;
+	height: 100%;
+}
+.map {
+  height: 100%;
+  padding: 0;
+}
+
+  </style> 
+   <div id="container1" >
+  <h3 align='center'>Donation Time Series </h3>
+   <chart type="StockChart" [options]="time_series"></chart>
+</div>
+<div id="container" >
+      <h3 align='center'>Donation Per Campaign Types </h3>
+       <chart [options]="new_campaign_plot"></chart>
+</div>
+
+
+<!-- <h3>Donations value HeatMap </h3>
+<div class="map"
+     leaflet style="width: 600px"
+     [leafletOptions]="heatmap_options"
+     (leafletMapReady)="onMapReady($event)"> 
+</div> -->
+
+<h3>Donations Value HeatMap in mapbox </h3>
+<div id="map1" 
+    style=" width:600px; height:100%">
+</div>
+
+<h3>Donor Volume markercluster Map</h3>
+<div class="map2" leaflet style="height: 600px; width: 600px;"
+				 [leafletOptions]="options"
+				 [leafletBaseLayers]="baseLayers"
+				 [leafletLayersControlOptions]="layersControlOptions"
+
+				 [leafletMarkerCluster]="markerClusterData"
+				 [leafletMarkerClusterOptions]="markerClusterOptions"
+				 (leafletMarkerClusterReady)="markerClusterReady($event)">
+			</div>
+</body>
