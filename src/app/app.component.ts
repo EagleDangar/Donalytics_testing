@@ -735,7 +735,7 @@ spacingRight: 0,
         backgroundColor : '#FFFFFF',
         floating : true,
         x: 20,
-        y: -150,
+        y: -180,
         labelFormatter : function () {
                 return this.name + ':</b> £ ' + this.y;
                 }
