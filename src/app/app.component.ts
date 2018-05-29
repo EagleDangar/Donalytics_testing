@@ -3,15 +3,15 @@ import * as time_data from './../assets/time_series_data.json';
 import * as heatmap_data from './../assets/heatmap_data.json';
 import * as markerdata from './../assets/heatmap_data.json';
 import * as campaign_da1 from './../assets/Campaign_data_firestore.json';
-import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
-import * as L from 'leaflet';
+// import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
+// import * as L from 'leaflet';
 import * as mapboxgl from 'mapbox-gl';
 import { Map } from 'mapbox-gl';
-import 'leaflet/dist/images/marker-shadow.png';
-import 'leaflet/dist/images/marker-icon.png';
-import 'leaflet.heat';
+// import 'leaflet/dist/images/marker-shadow.png';
+// import 'leaflet/dist/images/marker-icon.png';
+// import 'leaflet.heat';
 // import '../../node_modules/leaflet.browser.print/dist/leaflet.browser.print.min.js';
-import 'leaflet.markercluster';
+// import 'leaflet.markercluster';
 import DataFrame , { Row } from 'dataframe-js';
 import { ApiService } from './strip.service';
 import { Observable } from 'rxjs/Observable';
@@ -58,6 +58,7 @@ export class AppComponent implements OnInit {
 
 // mapbox heatmap child
 map1: Map;
+map3: Map;
 result: any;
    // @ViewChild('map1') map1: Map;
         time_data1 = [];
@@ -105,29 +106,29 @@ result: any;
 
 
 // variables of marker cluster
-        LAYER_OSM = {
-            id: 'openstreetmap',
-            name: 'Open Street Map',
-            enabled: false,
-            layer: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-                attribution: 'Open Street Map'
-            })
-        };
+        // LAYER_OSM = {
+        //     id: 'openstreetmap',
+        //     name: 'Open Street Map',
+        //     enabled: false,
+        //     layer: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //         maxZoom: 18,
+        //         attribution: 'Open Street Map'
+        //     })
+        // };
 
-        markericon;
-        // layersControlOptions = { position: 'bottomright' };
-        baseLayers = {
-            'Open Street Map': this.LAYER_OSM.layer
-        };
-        options = {
-            zoom: 6,
-            center: L.latLng([ 54., -2.4360])
-        };
+        // markericon;
+        // // layersControlOptions = { position: 'bottomright' };
+        // baseLayers = {
+        //     'Open Street Map': this.LAYER_OSM.layer
+        // };
+        // options = {
+        //     zoom: 6,
+        //     center: L.latLng([ 54., -2.4360])
+        // };
 
-        markerClusterGroup: L.MarkerClusterGroup;
-        markerClusterData: any[] = [];
-        markerClusterOptions: L.MarkerClusterGroupOptions;
+        // markerClusterGroup: L.MarkerClusterGroup;
+        // markerClusterData: any[] = [];
+        // markerClusterOptions: L.MarkerClusterGroupOptions;
 
 // marker cluster's options end
 
@@ -136,57 +137,57 @@ result: any;
   time_series: Object;
 
  // variables of heatmap
-  heatmap_options: object;
+//   heatmap_options: object;
 
-  heatmapLayer = new HeatmapOverlay({
-    radius: 20,
-    maxOpacity: 0.65,
-    minOpacity: 0,
-    // blur: 15,
-    scaleRadius: false,
-    useLocalExtrema: false,
-    latField: 'lat',
-    lngField: 'lng',
-    valueField: 'count',
-    gradient: {.4: 'blue', .6: 'cyan', .7: 'lime' , .8: 'yellow', 1: 'red'}
-  });
+//   heatmapLayer = new HeatmapOverlay({
+//     radius: 20,
+//     maxOpacity: 0.65,
+//     minOpacity: 0,
+//     // blur: 15,
+//     scaleRadius: false,
+//     useLocalExtrema: false,
+//     latField: 'lat',
+//     lngField: 'lng',
+//     valueField: 'count',
+//     gradient: {.4: 'blue', .6: 'cyan', .7: 'lime' , .8: 'yellow', 1: 'red'}
+//   });
 
- onMapReady(map: L.Map) {
-       for (this.r = 0 ; this.r < Object.keys(heatmap_data).length; this.r++) {
-        this.data1.data.push({
-            lat: heatmap_data[this.r][0],
-            lng: heatmap_data[this.r][1],
-            count: heatmap_data[this.r][2]
-          });
-    }
-      this.heatmapLayer.setData(this.data1);
-  }
+//  onMapReady(map: L.Map) {
+//        for (this.r = 0 ; this.r < Object.keys(heatmap_data).length; this.r++) {
+//         this.data1.data.push({
+//             lat: heatmap_data[this.r][0],
+//             lng: heatmap_data[this.r][1],
+//             count: heatmap_data[this.r][2]
+//           });
+//     }
+//       this.heatmapLayer.setData(this.data1);
+//   }
 
 // heatmap's main part ends here
 
 // marker cluster main part
 
-  generateData() {
+//   generateData() {
 
-    const markers: any[] = [];
+//     const markers: any[] = [];
 
-    for (let i = 0; i < Object.keys(markerdata).length; i++) {
-        const message = 'Donation Made From Here : £ ' + markerdata[i][2];
-         this.markericon = L.icon({
-            iconUrl: '/../../assets/marker-icon.png',
-            shadowUrl: '/../../assets/marker-shadow.png'
-        });
-        markers.push(L.marker([markerdata[i][0] , markerdata[i][1]], { icon: this.markericon, title: message }).bindPopup(message));
-    }
+//     for (let i = 0; i < Object.keys(markerdata).length; i++) {
+//         const message = 'Donation Made From Here : £ ' + markerdata[i][2];
+//          this.markericon = L.icon({
+//             iconUrl: '/../../assets/marker-icon.png',
+//             shadowUrl: '/../../assets/marker-shadow.png'
+//         });
+//         markers.push(L.marker([markerdata[i][0] , markerdata[i][1]], { icon: this.markericon, title: message }).bindPopup(message));
+//     }
 
-    this.markerClusterData = markers;
+//     this.markerClusterData = markers;
 
-}
-    markerClusterReady(group: L.MarkerClusterGroup) {
+// }
+//     markerClusterReady(group: L.MarkerClusterGroup) {
 
-    this.markerClusterGroup = group;
+//     this.markerClusterGroup = group;
 
-    }
+//     }
 
     // marker cluster main part's end is here
 
@@ -203,10 +204,16 @@ ngOnInit() {
         zoom: 5,
         center: [-2.4360, 54.]
       });
-
+      this.map3= new Map({
+        container: 'map3',
+        style: 'mapbox://styles/mapbox/dark-v9',
+        zoom: 5,
+        center: [-2.4360, 54.]
+      });
+  
       this.map1.on('style.load', this.onLoad.bind(this));
 
-
+      this.map3.on('style.load', this.onLoad1.bind(this));
     }
 // mapbox heatmap onLoad
 
@@ -340,6 +347,80 @@ onLoad() {
   });
 
   }
+  onLoad1(){
+    console.log('marker map is loaded, can I still talk to it?');
+    this.map3.addSource('donations', {
+      'type': 'geojson',
+      'data': '/../assets/donation_data.geojson',
+      cluster: true,
+    clusterMaxZoom: 14, // Max zoom to cluster points on
+    clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+
+  });
+  this.map3.addLayer({
+    id: "clusters",
+    type: "circle",
+    source: "donations",
+    filter: ["has", "point_count"],
+    paint: {
+        // Use step expressions (https://www.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+        // with three steps to implement three types of circles:
+        //   * Blue, 20px circles when point count is less than 100
+        //   * Yellow, 30px circles when point count is between 100 and 750
+        //   * Pink, 40px circles when point count is greater than or equal to 750
+        "circle-color": [
+            "step",
+            ["get", "point_count"],
+            "#51bbd6",
+            100,
+            "#f1f075",
+            750,
+            "#f28cb1"
+        ],
+        "circle-radius": [
+            "step",
+            ["get", "point_count"],
+            20,
+            100,
+            30,
+            750,
+            40
+        ]
+    }
+});
+
+this.map3.addLayer({
+    id: "cluster-count",
+    type: "symbol",
+    source: "donations",
+    filter: ["has", "point_count"],
+    layout: {
+        "text-field": "{point_count_abbreviated}",
+        "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+        "text-size": 12,
+        "icon-image": "emptyMarker",
+    }
+});
+
+this.map3.addLayer({
+    id: "unclustered-point",
+    type: "circle",
+    source: "donations",
+    filter: ["!has", "point_count"],
+    paint: {
+        "circle-color": "#11b4da",
+        "circle-radius": 8,
+        "circle-stroke-width": 1,
+        "circle-stroke-color": "#fff"
+    }
+});
+this.map3.on('click', 'unclustered-point', (e) => {
+    new mapboxgl.Popup()
+      .setLngLat(e.features[0].geometry.coordinates)
+      .setHTML('<b>Donation Made From Here : £ </b> ' + e.features[0].properties.donation)
+      .addTo(this.map3);
+  });
+  }
 // ends here
 
 // all Charts are here in constructor
@@ -404,15 +485,14 @@ constructor(private api: ApiService  ) {
 //             console.log(starting_after1);
 //     })     
 
-let p = 0 ;
-let q = 0 ;
 
 
-this.api.getallcharges().subscribe((res) => {
-    console.log(res);
-    this.stripe_metadata = res.md;
-    this.stripe_timedata = res.td;
-    this.stripe_amount = res.amount;
+
+// this.api.getallcharges().subscribe((res) => {
+//     console.log(res);
+//     this.stripe_metadata = res.md;
+//     this.stripe_timedata = res.td;
+//     this.stripe_amount = res.amount;
 //     for (p = 0; p < this.stripe_metadata.length; p++ ) {
 //             if(this.stripe_metadata[p]!==undefined){
 //             this.latitude.push(this.stripe_metadata[p]['latitude']);
@@ -423,60 +503,61 @@ this.api.getallcharges().subscribe((res) => {
 //             this.longitude.push(0);
 //         }
 // }   
-    this.time_data1 = this.stripe_timedata.map(function(e, i) {
-        return [e, this.stripe_amount[i]];
-      }); 
-      console.log(this.time_data1)
-    const stripe_df = new DataFrame({'amount':this.stripe_amount , 'latitude': this.latitude
-    , 'longitude' : this.longitude, 'timestamp' : this.stripe_timedata },
-    ['amount', 'latitude', 'longitude', 'timestamp'
-    ]);
-    // stripe_df.show(42);
-    const time_df = stripe_df.select('timestamp','amount')
-    time_df.sortBy('timestamp')
-    this.time_data1=time_df.toArray();
-    console.log(this.time_data1);
+//     this.time_data1 = this.stripe_timedata.map(function(e, i) {
+//         return [e, this.stripe_amount[i]];
+//       }); 
+//       console.log(this.time_data1)
+//     const stripe_df = new DataFrame({'amount':this.stripe_amount , 'latitude': this.latitude
+//     , 'longitude' : this.longitude, 'timestamp' : this.stripe_timedata },
+//     ['amount', 'latitude', 'longitude', 'timestamp'
+//     ]);
+//     // stripe_df.show(42);
+//     const time_df = stripe_df.select('timestamp','amount')
+//     time_df.sortBy('timestamp')
+//     this.time_data1=time_df.toArray();
+//     console.log(this.time_data1);
     
-    this.time_series = {
-        rangeSelector : {
-            selected : 1
-        },
-        title : { text : 'Donation Time Series' },
-    series: [{
-            name: 'Donation Data',
-            type: 'area',
-            data: this.time_data1,
-            tooltip: {
-            valueDecimals: 2
-        }
-    }],
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 600
-            },
-            chartOptions: {
-                chart: {
-                    width: 1300,
-                    height: 500
-                },
-                subtitle: {
-                    text: null
-                },
-                navigator: {
-                    enabled: false
-                }
-            }
-        }]
-    },
-    exporting: {
-        enabled : true,
-        filename: 'Donation Time Series'
-    },
-    };
-});
+//     this.time_series = {
+//         rangeSelector : {
+//             selected : 1
+//         },
+//         title : { text : 'Donation Time Series' },
+//     series: [{
+//             name: 'Donation Data',
+//             type: 'area',
+//             data: this.time_data1,
+//             tooltip: {
+//             valueDecimals: 2
+//         }
+//     }],
+//     responsive: {
+//         rules: [{
+//             condition: {
+//                 maxWidth: 600
+//             },
+//             chartOptions: {
+//                 chart: {
+//                     width: 1300,
+//                     height: 500
+//                 },
+//                 subtitle: {
+//                     text: null
+//                 },
+//                 navigator: {
+//                     enabled: false
+//                 }
+//             }
+//         }]
+//     },
+//     exporting: {
+//         enabled : true,
+//         filename: 'Donation Time Series'
+//     },
+//     };
+// });
 
-
+let p = 0 ;
+let q = 0 ;
  for (p = 0; p < Object.keys(campaign_da1).length; p++ ) {
                 this.campaigns.push(campaign_da1[p]['Campaigns']);
                 this.sub_campaigns.push(campaign_da1[p]['Sub_Campaigns']);
@@ -710,66 +791,66 @@ spacingRight: 0,
 // Campaign chart ends here
 
 
-//  // Creating Time Series chart
-//                 this.time_series = {
-//                     rangeSelector : {
-//                         selected : 1
-//                     },
-//                     title : { text : 'Donation Time Series' },
-//                 series: [{
-//                         name: 'Donation Data',
-//                         type: 'area',
-//                         data: time_data,
-//                         tooltip: {
-//                         valueDecimals: 2
-//                     }
-//                 }],
-//                 responsive: {
-//                     rules: [{
-//                         condition: {
-//                             maxWidth: 600
-//                         },
-//                         chartOptions: {
-//                             chart: {
-//                                 width: 1300,
-//                                 height: 500
-//                             },
-//                             subtitle: {
-//                                 text: null
-//                             },
-//                             navigator: {
-//                                 enabled: false
-//                             }
-//                         }
-//                     }]
-//                 },
-//                 exporting: {
-//                     enabled : true,
-//                     filename: 'Donation Time Series'
-//                 },
-//                 };
-// // Time Series's end is here
+ // Creating Time Series chart
+                this.time_series = {
+                    rangeSelector : {
+                        selected : 1
+                    },
+                    title : { text : 'Donation Time Series' },
+                series: [{
+                        name: 'Donation Data',
+                        type: 'area',
+                        data: time_data,
+                        tooltip: {
+                        valueDecimals: 2
+                    }
+                }],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 600
+                        },
+                        chartOptions: {
+                            chart: {
+                                width: 1300,
+                                height: 500
+                            },
+                            subtitle: {
+                                text: null
+                            },
+                            navigator: {
+                                enabled: false
+                            }
+                        }
+                    }]
+                },
+                exporting: {
+                    enabled : true,
+                    filename: 'Donation Time Series'
+                },
+                };
+// Time Series's end is here
 
 
 // Creating leaflet Heat map
-            this.heatmap_options = {
-                layers: [
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                    maxZoom: 20,
-                    }),
-                    this.heatmapLayer
-                ],
-                zoom: 6,
-                center: L.latLng([ 54., -2.4360]),
-            };
+            // this.heatmap_options = {
+            //     layers: [
+            //         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            //         maxZoom: 20,
+            //         }),
+            //         this.heatmapLayer
+            //     ],
+            //     zoom: 6,
+            //     center: L.latLng([ 54., -2.4360]),
+            // };
 
 // leaflet Heat map's end is here
 
 
 // marker cluster data
 
-    this.generateData();
+    // this.generateData();
 
 // marker cluster's end is here
 }

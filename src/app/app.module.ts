@@ -6,9 +6,9 @@ import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { AppComponent } from './app.component';
 // import { ChartComponent } from './chart/chart.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { LeafletDrawModule } from '@asymmetrik/angular2-leaflet-draw';
-import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster/dist/leaflet-markercluster/leaflet-markercluster.module';
+// import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+// import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
+// import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster/dist/leaflet-markercluster/leaflet-markercluster.module';
 
 // import { MapBoxModule } from 'angular2-mapbox/core';
 
@@ -36,9 +36,9 @@ export function highchartsFactory() {
     ChartModule.forRoot(require('highcharts/highstock'),
     require('highcharts/modules/exporting'), require('highcharts/modules/drilldown')),
     HttpModule,
-    LeafletModule.forRoot(),
-    LeafletDrawModule.forRoot(),
-    LeafletMarkerClusterModule.forRoot(),
+    // LeafletModule.forRoot(),
+    // LeafletDrawModule.forRoot(),
+    // LeafletMarkerClusterModule.forRoot(),
     // AngularFireModule.initializeApp(firebaseConfig),
     // AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,

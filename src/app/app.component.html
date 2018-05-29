@@ -1,13 +1,13 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
-<script src="js/leaflet-providers.js"></script>
+<!-- <script src="js/leaflet-providers.js"></script> -->
 
 <html>
 
 <head>
   <meta charset="utf-8">
-  <title>Donation_per_Campaign_Types</title>
+  <title>maptest1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -43,13 +43,15 @@
      [leafletOptions]="heatmap_options"
      (leafletMapReady)="onMapReady($event)"> 
 </div> -->
-
+<h3>Donor Volume markercluster in mapbox</h3>   
+<div id="map3" style="width:600px; height:100%">
+      </div>
 <h3>Donations Value HeatMap in mapbox </h3>
 <div id="map1" 
     style=" width:600px; height:100%">
 </div>
 
-<h3>Donor Volume markercluster Map</h3>
+<!-- <h3>Donor Volume markercluster Map</h3>
 <div class="map2" leaflet style="height: 600px; width: 600px;"
 				 [leafletOptions]="options"
 				 [leafletBaseLayers]="baseLayers"
@@ -58,5 +60,6 @@
 				 [leafletMarkerCluster]="markerClusterData"
 				 [leafletMarkerClusterOptions]="markerClusterOptions"
 				 (leafletMarkerClusterReady)="markerClusterReady($event)">
-			</div>
+      </div> -->
+     
 </body>
